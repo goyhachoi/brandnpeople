@@ -1,0 +1,230 @@
+/*
+ * 브랜드앤피플 (Brand & People) 디자인 시스템
+ * 디자인 철학: 따뜻한 에디토리얼 미니멀리즘 (Warm Editorial Minimalism)
+ * 컬러: Cream #F9F6F0 배경 + Soft Coral #E87A5D 포인트 + Sage #8A9A86 보조
+ * 타이포: Noto Serif KR (제목) + Pretendard (본문)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* 브랜드앤피플 커스텀 컬러 */
+  --coral: #E87A5D;
+  --coral-dark: #D4664A;
+  --coral-light: #F2A08C;
+  --sage: #8A9A86;
+  --sage-dark: #6B7A67;
+  --sage-light: #B0BEAc;
+  --cream: #F9F6F0;
+  --cream-dark: #EDE8DF;
+  --sand: #D4B896;
+  --deep-brown: #2C2416;
+  --warm-gray: #6B6459;
+  --light-gray: #A89E93;
+
+  /* shadcn 토큰 - 브랜드앤피플 팔레트로 오버라이드 */
+  --radius: 0.75rem;
+  --background: oklch(0.978 0.008 75);       /* Cream #F9F6F0 */
+  --foreground: oklch(0.2 0.02 60);           /* Deep Brown #2C2416 */
+  --card: oklch(0.99 0.005 75);
+  --card-foreground: oklch(0.2 0.02 60);
+  --popover: oklch(0.99 0.005 75);
+  --popover-foreground: oklch(0.2 0.02 60);
+  --primary: oklch(0.62 0.13 35);             /* Coral #E87A5D */
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.63 0.04 145);          /* Sage #8A9A86 */
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.94 0.01 75);
+  --muted-foreground: oklch(0.5 0.02 60);
+  --accent: oklch(0.91 0.02 75);              /* Cream Dark */
+  --accent-foreground: oklch(0.2 0.02 60);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.015 75);
+  --input: oklch(0.88 0.015 75);
+  --ring: oklch(0.62 0.13 35);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3 {
+    font-family: 'Noto Serif KR', 'Georgia', serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* 브랜드앤피플 커스텀 유틸리티 */
+  .btn-coral {
+    background-color: #E87A5D;
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-coral:hover {
+    background-color: #D4664A;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(232, 122, 93, 0.35);
+  }
+  .btn-outline-coral {
+    background-color: transparent;
+    color: #E87A5D;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1.5px solid #E87A5D;
+    cursor: pointer;
+  }
+  .btn-outline-coral:hover {
+    background-color: #E87A5D;
+    color: white;
+    transform: translateY(-1px);
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #2C2416;
+    line-height: 1.35;
+  }
+  .section-subtitle {
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 1.0625rem;
+    color: #6B6459;
+    line-height: 1.75;
+  }
+  .serif-italic {
+    font-family: 'Noto Serif KR', serif;
+    font-style: italic;
+    color: #E87A5D;
+  }
+  .card-warm {
+    background: white;
+    border-radius: 1.25rem;
+    box-shadow: 0 2px 20px rgba(44, 36, 22, 0.07);
+    transition: all 0.3s ease;
+  }
+  .card-warm:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(44, 36, 22, 0.12);
+  }
+}
+
+/* 스크롤 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+/* 부드러운 스크롤 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F9F6F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4B896;
+  border-radius: 3px;
+}
